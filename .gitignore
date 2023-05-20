@@ -1,0 +1,33 @@
+# Fasapi Framework
+/.fasapi/
+
+# Environment-specific configurations
+/.env
+/.env.local
+/.env.*.local
+
+# Dependency directories
+/vendor/
+/node_modules/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Compiled output
+/build/
+/public/
+
+# Log files
+/storage/logs/
+
+# Cache files
+/storage/cache/
+
+# Miscellaneous
+composer.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
