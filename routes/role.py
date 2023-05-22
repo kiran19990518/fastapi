@@ -8,7 +8,7 @@ from config.db import conn
 from models.role import Roles
 from schemas.role import RoleSchema, RoleResponseSchema
 
-roleRoutes = APIRouter(prefix="/role")
+roleRoutes = APIRouter(prefix="/api/role")
 
 
 
@@ -38,7 +38,7 @@ async def getRole(id: int):
         raise http_exception
     except Exception as e:
         print("Exception at getRole", e)
-        raise HTTPException(status_code=500, detail="Failed to fetch role")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch role with id: {id}")
 
 
 @roleRoutes.post("/")
@@ -76,7 +76,14 @@ async def updateRole(id: int, role: RoleSchema):
         if result.rowcount == 0:
             raise HTTPException(status_code=404, detail="Role not found")
         else:
-            return {"message": "Role updated successfully"}
+            # Fetch the created category using the ID
+            select_query = select(Roles).where(Roles.roleName == role.roleName)
+            updated_role = conn.execute(select_query).fetchone()
+
+            if updated_role:
+                return RoleResponseSchema(categoryId=updated_role[0], categoryName=updated_role[1], categoryDescription=updated_role[2], showUnderMenu=updated_role[3])  # Convert role object to dictionary
+            else:
+                raise HTTPException(status_code=404, detail="role not found")
     except HTTPException as http_exception:
         raise http_exception
     except Exception as e:
