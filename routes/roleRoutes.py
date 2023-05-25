@@ -5,8 +5,8 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from sqlalchemy import select, insert, update, delete
 from config.db import conn
-from models.role import Roles
-from schemas.role import RoleSchema, RoleResponseSchema
+from models.roleModel import Roles
+from schemas.roleSchema import RoleSchema, RoleResponseSchema
 
 roleRoutes = APIRouter(prefix="/api/role")
 

@@ -5,8 +5,8 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from sqlalchemy import select, insert, update, delete
 from config.db import conn
-from models.category import Categories
-from schemas.category import CategorySchema, CategoryResponseSchema
+from models.categoryModel import Categories
+from schemas.categorySchema import CategorySchema, CategoryResponseSchema
 
 categoryRoutes = APIRouter(prefix="/api/category")
 

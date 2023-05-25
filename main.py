@@ -1,7 +1,8 @@
 import uvicorn as uvicorn
 from fastapi import FastAPI, Depends
-from routes.role import roleRoutes
-from routes.category import categoryRoutes
+from routes.roleRoutes import roleRoutes
+from routes.categoryRoutes import categoryRoutes
+from routes.roleCategoryMappingRoutes import RoleCategoryMappingRoutes
 
 # Create the FastAPI app
 app = FastAPI()
@@ -9,6 +10,8 @@ app = FastAPI()
 app.include_router(roleRoutes)
 
 app.include_router(categoryRoutes)
+
+app.include_router(RoleCategoryMappingRoutes)
 
 
 # Sample API route
