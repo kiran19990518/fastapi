@@ -50,5 +50,10 @@ def user_update(user_id:int,user:user_get_response,db:Session=Depends(getdb)):
     db.commit()
     return u
 
+@app.get("/userget",response_model = List[user_get_response])
+def get_user(db:Session=Depends(getdb)):
+    return db.query(Users).all()
+
+
 
 
